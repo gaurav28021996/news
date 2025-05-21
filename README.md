@@ -301,7 +301,7 @@
         // Fetch News
         async function fetchNews() {
             try {
-                const url = `https://newsapi.org/v2/everything?q?country=india&category=${currentCategory}&apiKey=${9185d55dbda14e73bfb4c1a08e85b429}`;
+                const url = `https://newsapi.org/v2/top-headlines?country=india&category=${currentCategory}&apiKey=${9185d55dbda14e73bfb4c1a08e85b429}`;
                 const response = await fetch(url);
                 const data = await response.json();
                 displayNews(data.articles);
