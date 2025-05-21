@@ -1,6 +1,6 @@
 
 <html lang="en">
- <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: newsapi.org https://cors-anywhere.herokuapp.com;">
+<head meta http-equiv="Content-Security-Policy" content="default-src 'self' https: newsapi.org https://cors-anywhere.herokuapp.com;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NewsHub - Modern News Blog</title>
