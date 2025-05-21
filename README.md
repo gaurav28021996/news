@@ -159,6 +159,13 @@
           'sortBy=popularity&' +
           'apiKey=9185d55dbda14e73bfb4c1a08e85b429';);
                 const data = await response.json();
+                
+var req = new Request(url);
+
+fetch(req)
+    .then(function(response) {
+        console.log(response.json());
+    })
                 displayNews(data.articles);
             } catch (error) {
                 console.error('Error fetching news:', error);
