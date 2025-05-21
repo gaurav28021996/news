@@ -153,7 +153,11 @@
         // Fetch news articles
         async function fetchNews() {
             try {
-                const response = await fetch(NEWS_API_URL);
+                const response = await fetch(https://newsapi.org/v2/everything?' +
+          'q=Apple&' +
+          'from=2025-05-21&' +
+          'sortBy=popularity&' +
+          'apiKey=9185d55dbda14e73bfb4c1a08e85b429';);
                 const data = await response.json();
                 displayNews(data.articles);
             } catch (error) {
