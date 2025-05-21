@@ -242,7 +242,8 @@
 
     <script>
         // Configuration
-        const API_KEY = '9185d55dbda14e73bfb4c1a08e85b429';
+       // Make sure the API_KEY is properly referenced
+const API_KEY = '9185d55dbda14e73bfb4c1a08e85b429'; // Keep as string
         const categories = ['general', 'business', 'technology', 'science', 'sports', 'entertainment', 'health'];
         let currentCategory = 'general';
         let currentSearchTerm = '';
@@ -301,7 +302,8 @@
         // Fetch News
         async function fetchNews() {
             try {
-                const url = `https://newsapi.org/v2/top-headlines?country=india&category=${currentCategory}&apiKey=${9185d55dbda14e73bfb4c1a08e85b429}`;
+               // Modify the URL in fetchNews
+const url = `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=in&category=${currentCategory}&apiKey=${API_KEY}`;
                 const response = await fetch(url);
                 const data = await response.json();
                 displayNews(data.articles);
