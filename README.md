@@ -210,7 +210,7 @@
             }
         }
     </style>
-</head>
+
 <body>
     <header>
         <nav class="nav-container">
@@ -310,7 +310,65 @@ const url = `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-head
                 newsContainer.innerHTML = '<p class="error">Failed to load news. Please try again later.</p>';
             }
         }
+<!-- Fix 1: Correct Content Security Policy meta tag placement -->
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: newsapi.org https://cors-anywhere.herokuapp.com;">
+    <meta charset="UTF-8">
+    <!-- Rest of head content remains the same -->
+</head>
 
+<script>
+// Fix 2: Improved fetchNews function with better error handling
+async function fetchNews() {
+    const newsContainer = document.getElementById('newsContainer');
+    try {
+        newsContainer.innerHTML = '<div class="loading">Loading news...</div>';
+        
+        // Fix 3: Use direct API call with HTTPS
+        const url = `https://newsapi.org/v2/top-headlines?country=in&category=${currentCategory}&apiKey=${API_KEY}`;
+        
+        // Fix 4: Add headers for CORS
+        const response = await fetch(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        });
+
+        // Fix 5: Handle API errors properly
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to fetch news');
+        }
+
+        const data = await response.json();
+        
+        if (data.status !== "ok") {
+            throw new Error(data.message || 'News API error');
+        }
+
+        displayNews(data.articles);
+    } catch (error) {
+        console.error('Error fetching news:', error);
+        newsContainer.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+    }
+}
+
+// Fix 6: Add CSS for loading and error states
+<style>
+.loading {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+}
+
+.error {
+    color: #e74c3c;
+    padding: 2rem;
+    text-align: center;
+}
+</style>
         // Display News
         function displayNews(articles) {
             const newsContainer = document.getElementById('newsContainer');
