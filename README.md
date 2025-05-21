@@ -160,7 +160,7 @@
           'apiKey=9185d55dbda14e73bfb4c1a08e85b429';);
                 const data = await response.json();
                 
-var req = new Request(https://www.bbc.com/news);
+var req = new Request(NEWS_API_URL);
 
 fetch(req)
     .then(function(response) {
